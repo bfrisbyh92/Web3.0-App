@@ -24,7 +24,7 @@ function addToBlockchain(address payable receiver, uint amount, string memory me
     transactionCount += 1;
     transactions.push(TransferStruct(msg.sender, receiver, amount, message, block.timestamp,keyword));
 
-    emit Transfer(msg.sender, receiver, amount, message, block.timestamp,keyword);
+    emit Transfer(msg.sender, receiver, amount, message, block.timestamp, keyword);
 }
 
 function getAllTransactions() public view returns (TransferStruct[] memory) {
