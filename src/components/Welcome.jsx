@@ -23,11 +23,16 @@ const Input = ({placeholder,name,type,value,handleChange}) => (
 
 
 const Welcome = () => {
-  const {connectWallet} = useContext(TransactionContext);
+  const {connectWallet, currentAccount, formData, sendTransaction, handleChange} = useContext(TransactionContext);
   
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+      const {addressTo, amount, keyword, message} = formData;
+      e.preventDefault();
 
+      if(!addressTo || !amount || !keyword || !message)return;
+        sendTransaction();
+        console.log(formData);
   }
 
  
@@ -45,7 +50,9 @@ const Welcome = () => {
           text-base">
           Explore the Crypto World. Buy and sell cryptocurrencies easily on Krypto.
           </p>
-          <button type='button'
+
+          {/* If wallet is already connected, Don't render button */}
+          {!currentAccount && (<button type='button'
           onClick={connectWallet}
           className="flex flex-row justify-center items-center
           my-5 bg-[#2952e3] p-3 rounded-full cursor-pointer
@@ -56,6 +63,7 @@ const Welcome = () => {
           Connect Wallet
           </p>
           </button>
+          )}
           
           <div className="grid sm:grid-cols-3 grid-cols-2 w-full mt-10">
             <div className={`rounded-tl-2xl ${commonStyles}`}>
@@ -90,7 +98,7 @@ const Welcome = () => {
               </div>
               <div>
                 <p className="text-white font-light text-sm">
-                Address: 0xbfrisbyh92.....djaskjfoidfjasf ETH
+                {/* Address: 0xbfrisbyh92.....djaskjfoidfjasf ETH */}
                 </p>
                   <p className="text-white font-semibold text-lg mt-1">
                     Ethereum
@@ -101,16 +109,16 @@ const Welcome = () => {
 
             <div className="pd-5 sm:w-96 w-full flex flex-col justify-start items-center blue-glassmorphism">
                 <Input placeholder="Address To" name="addressTo"
-                type="text" handleChange={() => {}}/>
+                type="text" handleChange={handleChange}/>
 
                 <Input placeholder="Amount (ETH)" name="amount"
-                type="number" handleChange={() => {}}/>
+                type="number" handleChange={handleChange}/>
 
                 <Input placeholder="Keyword (Gif)" name="keyword"
-                type="text" handleChange={() => {}}/>
+                type="text" handleChange={handleChange}/>
 
                 <Input placeholder="Enter Message" name="message"
-                type="text" handleChange={() => {}}/>
+                type="text" handleChange={handleChange}/>
                 
                 <div className="h-[1px] w-full bg-gray-400 my-2"/>
 
