@@ -24,7 +24,7 @@ const Input = ({placeholder,name,type,value,handleChange}) => (
 
 
 const Welcome = () => {
-  const {connectWallet, currentAccount, formData, sendTransaction, handleChange} = useContext(TransactionContext);
+  const {connectWallet, currentAccount, formData, sendTransaction, handleChange, isLoading} = useContext(TransactionContext);
   
 
   const handleSubmit = (e) => {
@@ -49,7 +49,7 @@ const Welcome = () => {
           <p className="text-left mt-5
           text-white font-light md:w-9/12 w-11/12
           text-base">
-          Explore the Crypto World. Buy and sell cryptocurrencies easily on Krypto.
+          Explore the Crypto World. Buy and sell cryptocurrencies easily on Kryptlow.
           </p>
 
           {/* If wallet is already connected, Don't render button */}
@@ -123,7 +123,7 @@ const Welcome = () => {
                 
                 <div className="h-[1px] w-full bg-gray-400 my-2"/>
 
-                {false ? (
+                {isLoading ? (
                     <Loader/>
                 ) : (
                   <button

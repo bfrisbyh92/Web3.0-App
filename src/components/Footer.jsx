@@ -9,7 +9,7 @@ const Footer = () => {
       <div className="w-full flex sm:flex-row flex-col justify-between items-center my-4">
         <div className="flex flex-[0.5] justify-center items-center">
 
-         <img src={logo}
+         <img src={require('/Users/friznation/Desktop/projects/uncomplete/web3.0/client/src/images/logo-kryptlow.png')}
           alt="logo"
           className="w-32"
           >
